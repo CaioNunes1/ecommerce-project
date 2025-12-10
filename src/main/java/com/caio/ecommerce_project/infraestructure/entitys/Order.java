@@ -4,6 +4,7 @@ package com.caio.ecommerce_project.infraestructure.entitys;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,5 +29,9 @@ public class Order {
     private Instant createdAt;
 
     @OneToMany(mappedBy = "order",cascade = CascadeType.ALL,orphanRemoval = true)
+    @Builder.Default
     private List<OrderItem> items = new ArrayList<>();
+
+    public void setTotal(BigDecimal total) {
+    }
 }

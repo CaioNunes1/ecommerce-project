@@ -2,6 +2,7 @@ package com.caio.ecommerce_project.controller;
 
 import com.caio.ecommerce_project.business.ProductService;
 import com.caio.ecommerce_project.infraestructure.entitys.Product;
+import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.ConcreteProxy;
 import org.springframework.http.ResponseEntity;
@@ -24,5 +25,10 @@ public class ProductController {
     @GetMapping("/findAll")
     public ResponseEntity<List<Product>> findAllProducts(){
         return ResponseEntity.ok(service.findAll());
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Product> findById(@PathVariable Long id){
+        return ResponseEntity.ok(service.findById(id));
     }
 }

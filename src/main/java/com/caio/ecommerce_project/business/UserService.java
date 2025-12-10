@@ -2,10 +2,12 @@ package com.caio.ecommerce_project.business;
 
 import com.caio.ecommerce_project.infraestructure.entitys.User;
 import com.caio.ecommerce_project.infraestructure.repositorys.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -21,6 +23,13 @@ public class UserService {
         }
         user.setCreatedAt(Instant.now());
         return repository.saveAndFlush(user);
+    }
+
+    public User findByEmail(String email){
+        return repository.findByEmail(email).orElseThrow(
+                ()-> new RuntimeException("Usuário não encontrado")
+        );
+
     }
 
     public User findById(Long id){
