@@ -1,5 +1,6 @@
 package com.caio.ecommerce_project.infraestructure.entitys;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,7 @@ public class OrderItem {
     private Long id;
 
     @ManyToOne(optional = false)
+    @JsonBackReference
     private Order order;
 
     @ManyToOne(optional = false)
