@@ -26,5 +26,12 @@ public class ProductService {
         );
     }
 
+    public void deleteProduct(Long id){
+        Product product = repository.findById(id).orElseThrow(
+                ()-> new RuntimeException("Produto não encontrado")
+        );
+        repository.delete(product);
+    }
+
 
 }

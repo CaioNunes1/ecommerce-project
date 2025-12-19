@@ -31,4 +31,10 @@ public class ProductController {
     public ResponseEntity<Product> findById(@PathVariable Long id){
         return ResponseEntity.ok(service.findById(id));
     }
+
+    @DeleteMapping("/deleteById")
+    public ResponseEntity<Void> deleteByEmail(@RequestParam Long id){
+        service.deleteProduct(id);
+        return ResponseEntity.noContent().build();
+    }
 }
