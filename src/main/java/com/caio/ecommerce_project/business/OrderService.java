@@ -94,4 +94,18 @@ public class OrderService {
         return orderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
     }
+
+    public List<Order> findAll() {
+        return orderRepository.findAll();
+    }
+    public List<Order> findByUserId(Long userId) {
+        return orderRepository.findByUserId(userId);
+    }
+
+    public List<Order> findByUserEmail(String email){
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        return findByUserId(Long.valueOf(user.getId()));
+    }
+
 }

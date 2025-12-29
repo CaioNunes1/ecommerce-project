@@ -29,6 +29,9 @@ public class User {
         @Column(name = "created_at", updatable = false)
         private Instant createdAt;
 
+        @Enumerated(EnumType.STRING)
+        private Role role; // ROLE_USER or ROLE_ADMIN
+
         @PrePersist
         public void onPrePersist() {
             if (this.createdAt == null) {
