@@ -117,7 +117,7 @@ Revise os logs quando fizer requisições autenticadas para entender se as crede
 * Criar usuário (se endpoint público):
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"name":"Caio","email":"caio@email.com","password":"123"}' http://localhost:8080/user/create
+curl -X POST -H "Content-Type: application/json" -d '{"name":"Caio","email":"caio@email.com","password":yourpasswrd}' http://localhost:8080/user/create
 ```
 
 * Autenticar e listar pedidos (admin):
