@@ -33,5 +33,14 @@ public class ProductService {
         repository.delete(product);
     }
 
+    public Product uptadeProduct(Product updated){
+        Product product = findById(updated.getId());
+        product.setName(updated.getName());
+        product.setPrice(updated.getPrice());
+        product.setCategory(updated.getCategory());
+        return repository.saveAndFlush(product);
+
+    }
+
 
 }

@@ -2,8 +2,10 @@ package com.caio.ecommerce_project.business;
 
 import com.caio.ecommerce_project.infraestructure.entitys.Order;
 import com.caio.ecommerce_project.infraestructure.entitys.Product;
+import com.caio.ecommerce_project.infraestructure.entitys.User;
 import com.caio.ecommerce_project.infraestructure.repositorys.OrderRepository;
 import com.caio.ecommerce_project.infraestructure.repositorys.ProductRepository;
+import com.caio.ecommerce_project.infraestructure.repositorys.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import java.util.List;
 public class AdminService {
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
+    private final UserRepository userRepository;
 
     public List<Order> findAllOrders() {
         return orderRepository.findAll();
@@ -35,5 +38,9 @@ public class AdminService {
 
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
+    }
+
+    public List<User> findAllUsers(){
+        return userRepository.findAll();
     }
 }
