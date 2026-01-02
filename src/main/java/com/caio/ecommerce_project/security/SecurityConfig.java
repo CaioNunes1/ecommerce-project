@@ -29,15 +29,15 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // dentro do seu SecurityConfig.filterChain(HttpSecurity http)
         http
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()               // preflight
-                        .requestMatchers(HttpMethod.GET, "/products/**").permitAll()         // <<< permite listar/pegar produtos sem auth
-                        .requestMatchers(HttpMethod.GET, "/products/deleteById").hasRole("ADMIN")
-                        .requestMatchers("/user/create").permitAll()
-                        .requestMatchers("/user/findByEmail").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()         // preflight
+                        .requestMatchers(HttpMethod.POST, "/user/create").permitAll()   // <-- permitir signup
+                        .requestMatchers(HttpMethod.POST, "/user/deleteByEmail").permitAll()   // <-- permitir signup
+                        .requestMatchers(HttpMethod.GET, "/products/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/orders/create").permitAll()
                         .requestMatchers("/user/**", "/orders/**").hasAnyRole("USER","ADMIN")
@@ -46,8 +46,8 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-        // opcional: permitir H2 console
         http.headers(headers -> headers.frameOptions(frame -> frame.disable()));
+
 
         return http.build();
     }

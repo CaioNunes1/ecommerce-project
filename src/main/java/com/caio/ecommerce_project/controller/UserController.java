@@ -28,8 +28,8 @@ public class UserController {
         return ResponseEntity.status(200).body(service.findById(id));
     }
 
-    @DeleteMapping("/deleteByEmail")
-    public ResponseEntity<Void> deleteByEmail(@RequestParam String email){
+    @DeleteMapping("/deleteByEmail/{email}")
+    public ResponseEntity<Void> deleteByEmail(@PathVariable String email){
         service.deleteByEmail(email);
         return ResponseEntity.noContent().build();
     }
